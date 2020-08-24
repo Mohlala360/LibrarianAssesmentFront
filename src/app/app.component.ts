@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { BookService } from './services/book.service';
+import { BookService } from './services/books/book.service';
 
 @Component({
   selector: 'app-root',
@@ -16,9 +16,6 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.bookService.getWeathor().subscribe((g: any) => {
-      g = g;
-      console.log(g);
-    });
+        
   }
 }
