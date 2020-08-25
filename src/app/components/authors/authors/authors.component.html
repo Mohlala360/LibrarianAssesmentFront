@@ -1,5 +1,8 @@
 <div class="container">
     <div>
+        <label>{{pageTitle}}</label>
+    </div>
+    <div>
         <button class="btnAdd" [routerLink]="['/author/add']">Add author</button>
     </div>
     <div>
@@ -17,15 +20,14 @@
                 <tr *ngFor="let author of authors">
                     <td>{{author.aithorId}}</td>
                     <td>{{author.name}}</td>
-                    <td>{{author.surname}}</td>                   
-                    <td><a [routerLink]="['author/edit/:id']">Edit</a></td>
-                    <td><a [routerLink]="['author/:id']">Details</a></td>
+                    <td>{{author.surname}}</td>
+                    <td><a [routerLink]="['author/edit','author.aithorId']">edit</a></td>
+                    <td><a [routerLink]="['author','author.aithorId']">details</a></td>
                 </tr>
             </tbody>
         </table>
     </div>
-    <div class="button">
-        <button class="btnAdd" [routerLink]="['']">Back</button>
+    <div>
+        <button class="btnAdd" (click)="navigateBack()">Back</button>
     </div>
-
 </div>

@@ -3,6 +3,8 @@ import { BookService } from 'src/app/services/books/book.service';
 import { AuthorService } from 'src/app/services/authors/author.service';
 import { Author } from 'src/app/models/authors/author';
 import { Book } from 'src/app/models/books/book';
+import { ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-book-edit',
@@ -13,15 +15,32 @@ export class BookEditComponent implements OnInit {
 
   authors: Author[];
   book: Book;
+  pageTitle: string;
   addNewAuthor: boolean;
-  constructor(private bookService: BookService, private authorService: AuthorService) {
+  
+  constructor(private bookService: BookService,
+    private authorService: AuthorService,
+    private activatedRoute: ActivatedRoute,
+    private location: Location) {
+    this.pageTitle = 'Book';
     this.authors = [];
     this.addNewAuthor = false;
   }
 
   ngOnInit() {
-    this.getAuthors();
-    this.book = new Book();
+    this.activatedRoute.params.subscribe(params => {
+      const edit = !!(params['id']);
+      if (edit) {
+        this.pageTitle = this.pageTitle + 'Edit';
+        const bookId = +params['id'];
+        this.bookService.getBookById(bookId).subscribe((returnedBook: Book) => {
+          this.book = returnedBook;
+        });
+      } else {
+        this.getAuthors();
+        this.book = new Book();
+      }
+    });
   }
 
   getAuthors(): void {
@@ -45,6 +64,10 @@ export class BookEditComponent implements OnInit {
     data.title = (<HTMLInputElement>document.getElementById('inputBookTitle')).value;
     data.publishDate = new Date((<HTMLInputElement>document.getElementById('inputBookPublishDate')).value);
     return data;
+  }
+
+  navigateBack(): void {
+    this.location.back();
   }
 
   submit(): void {

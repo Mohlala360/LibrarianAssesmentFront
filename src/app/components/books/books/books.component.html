@@ -1,5 +1,8 @@
 <div class="container">
     <div>
+        <label>{{pageTitle}}</label>
+    </div>
+    <div>
         <button class="btnAdd" [routerLink]="['/user/add']">Add book</button>
     </div>
     <div>
@@ -18,14 +21,13 @@
                     <td>{{book.title}}</td>
                     <td>{{book.publishDate}}</td>
                     <td>{{book.author.name + ' ' + book.author.surname}}</td>
-                    <td><a [routerLink]="['/book/:id']">Details</a></td>
-                    <td><a [routerLink]="['/book/edit/:id']">Edit</a></td>
+                    <td><a [routerLink]="['/book','book.bookId']">details</a></td>
+                    <td><a [routerLink]="['/book/edit','book.bookId']">edit</a></td>
                 </tr>
             </tbody>
         </table>
     </div>
-    <div class="bottom">
-
+    <div>
+        <button class="btnAdd" (click)="navigateBack()">Back</button>
     </div>
-
 </div>

@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { UserBookService } from 'src/app/services/user-books/user-book.service';
 import { UserBook } from 'src/app/models/user-books/user-book';
+import { ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
+import { UserBookStatuses } from 'src/app/models/enums/user-book-statuses';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-user-books',
@@ -10,15 +14,35 @@ import { UserBook } from 'src/app/models/user-books/user-book';
 export class UserBooksComponent implements OnInit {
 
   userBooks: UserBook[];
+  pageTitle: string;
 
-  constructor(private userBookService: UserBookService) {
+  constructor(private userBookService: UserBookService,
+    private activatedRoute: ActivatedRoute,
+    private location: Location) {
+    this.pageTitle = 'User Books';
     this.userBooks = [];
   }
 
   ngOnInit() {
-    this.userBookService.getUserBooks().subscribe((returnedUserBooks: UserBook[]) => {
-      this.userBooks = returnedUserBooks;
+    this.activatedRoute.params.subscribe(params => {
+      this.userBookService.getUserBooks().subscribe((returnedUserBooks: UserBook[]) => {
+        this.userBooks = returnedUserBooks;
+      });
     });
   }
 
+   getRowClass(userBook: UserBook): string {
+     let rowClass = '';
+     if (userBook.currentState.useBookStatusId != UserBookStatuses.Return) {
+       const updatedTimeSpan = (new Date()).getTime() - moment((userBook.currentState.userBookStateDateUpdated)).toDate().getTime();
+     if (updatedTimeSpan > 1000 * 60 * 60 * 24 * 5) {
+         rowClass = 'danger';
+       }
+       return rowClass;
+     }
+   }
+
+  navigateBack(): void {
+    this.location.back();
+  }
 }

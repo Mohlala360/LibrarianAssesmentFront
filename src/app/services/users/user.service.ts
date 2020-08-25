@@ -22,12 +22,8 @@ export class UserService {
     return this.http.get<User[]>(apiCaller + 'users');
   }
 
-  getUser(userId: number): Observable<User[]> {
-    return this.http.get<User[]>(apiCaller + `users/${userId}`);
-  }
-
-  getLibrarians(): Observable<User[]> {
-    return this.http.get<User[]>(apiCaller + 'users/as/librarian');
+  getUser(userId: number): Observable<User> {
+    return this.http.get<User>(apiCaller + `users/${userId}`);
   }
 
   updateUser(user: User): Observable<User> {

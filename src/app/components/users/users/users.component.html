@@ -1,7 +1,10 @@
 <div class="container">
     <div>
+        <label>{{pageTitle}}</label>
+    </div>
+    <div>
         <button class="btnAdd" [routerLink]="['/user/add']">Add user</button>
-    </div>    
+    </div>
     <div>
         <table class="table">
             <thead>
@@ -24,10 +27,13 @@
                     <td>{{user.cellnumber}}</td>
                     <td>{{user.email}}</td>
                     <td>{{user.userType.name}}</td>
-                    <td>Details</td>
-                    <td>Edit</td>
+                    <td><a [routerLink]="['user',user.userId]"> details </a></td>
+                    <td><a [routerLink]="['user/edit',user.userId]"> edit </a></td>
                 </tr>
             </tbody>
         </table>
+    </div>
+    <div>
+        <button class="btnAdd" (click)="navigateBack()">Back</button>
     </div>
 </div>

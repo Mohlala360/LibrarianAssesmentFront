@@ -1,9 +1,12 @@
 <div class="container">
     <div>
+        <label>{{pageTitle}}</label>
+    </div>
+    <div>
         <button class="btnAdd" [routerLink]="['/user/add']">Add user</button>
         <button class="btnAdd" [routerLink]="['/book/add']">Add book</button>
         <button class="btnAdd" [routerLink]="['/user-book/allocate']">Allocate book to user</button>
-    </div>    
+    </div>
     <div>
         <table class="table">
             <thead>
@@ -17,15 +20,18 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let userBook of userBooks">
+                <tr *ngFor="let userBook of userBooks" class="danger" [class]="getRowClass(userBook)">
                     <td>{{userBook.userBookId}}</td>
                     <td>{{userBook.book.title}}</td>
                     <td>{{userBook.user.name + ' ' + userBook.user.surname}}</td>
-                    <td>{{userBook.currentState.useBookStatusId}}</td>                   
-                    <td>Details</td>
-                    <td>Edit</td>
+                    <td>{{userBook.currentState.useBookStatusId}}</td>
+                    <td><a [routerLink]="['/user-book','userBook.userBookId}']">details</a></td>
+                    <td><a [routerLink]="['/user-book/edit','userBook.userBookId}']">return</a></td>
                 </tr>
             </tbody>
         </table>
+    </div>
+    <div>
+        <button class="btnAdd" (click)="navigateBack()">Back</button>
     </div>
 </div>

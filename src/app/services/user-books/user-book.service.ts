@@ -21,7 +21,7 @@ export class UserBookService {
     return this.http.get<UserBook[]>(apiCaller + 'books/userBooks');
   }
 
-  getBookById(userBookId:number): Observable<UserBook> {
+  getuserBookById(userBookId:number): Observable<UserBook> {
     return this.http.get<UserBook>(apiCaller + `books/userBooks/${userBookId}`);
   }
 

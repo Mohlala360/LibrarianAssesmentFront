@@ -1,5 +1,8 @@
 <div class="container">
     <div>
+        <label>{{pageTitle}}</label>
+    </div>
+    <div>
         <form>
             <div>
                 <div class="form-group row">
@@ -21,7 +24,6 @@
     </div>
     <div class="bottom">
         <button class="btnAdd" (click)="submit()">Submit</button>
-        <button class="btnAdd" style="background-color: red;">Back</button>
-        <button class="btnAdd" style="background-color: rgb(134, 131, 131);">Cancel</button>
+        <button class="btnAdd" (click)=" navigateBack()" style="background-color: red;">Back</button>
     </div>
 </div>
