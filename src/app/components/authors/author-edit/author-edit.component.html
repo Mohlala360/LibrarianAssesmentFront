@@ -1,1 +1,27 @@
-<p>author-edit works!</p>
+<div class="container">
+    <div>
+        <form>
+            <div>
+                <div class="form-group row">
+                    <label for="inputAuthorName" class="col-sm-2 col-form-label">Name</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="inputAuthorName" placeholder="Name"
+                            [(ngModel)]="book.author.name">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="inputAuthorSurname" class="col-sm-2 col-form-label">Surname</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="inputAuthorSurname" placeholder="Surname"
+                            [(ngModel)]="book.author.surname">
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="bottom">
+        <button class="btnAdd" (click)="submit()">Submit</button>
+        <button class="btnAdd" style="background-color: red;">Back</button>
+        <button class="btnAdd" style="background-color: rgb(134, 131, 131);">Cancel</button>
+    </div>
+</div>

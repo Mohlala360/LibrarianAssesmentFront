@@ -14,18 +14,18 @@ export class AuthorService {
   constructor(private http: HttpClient) { }
 
   add(author: Author): Observable<Author> {
-    return this.http.post<Author>(apiCaller + 'author', author);
+    return this.http.post<Author>(apiCaller + 'books/author', author);
   }
 
   getAuthors(): Observable<Author[]> {
-    return this.http.get<Author[]>(apiCaller + 'author');
+    return this.http.get<Author[]>(apiCaller + 'books/author');
   }
 
-  getAuthor(authorId:number): Observable<Author[]> {
-    return this.http.get<Author[]>(apiCaller + `author/${authorId}`);
+  getAuthor(authorId:number): Observable<Author> {
+    return this.http.get<Author>(apiCaller + `books/author/${authorId}`);
   }
 
   update(author: Author): Observable<Author> {
-    return this.http.put<Author>(apiCaller + 'author', author);
+    return this.http.put<Author>(apiCaller + 'books/author', author);
   }
 }

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { UserBookService } from 'src/app/services/user-books/user-book.service';
+import { UserBook } from 'src/app/models/user-books/user-book';
 
 @Component({
   selector: 'app-user-books',
@@ -7,9 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserBooksComponent implements OnInit {
 
-  constructor() { }
+  userBooks: UserBook[];
+
+  constructor(private userBookService: UserBookService) {
+    this.userBooks = [];
+  }
 
   ngOnInit() {
+    this.userBookService.getUserBooks().subscribe((returnedUserBooks: UserBook[]) => {
+      this.userBooks = returnedUserBooks;
+    });
   }
 
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/services/users/user.service';
 import { UserType } from 'src/app/models/users/user-type';
+import { User } from 'src/app/models/users/user';
 
 @Component({
   selector: 'app-users',
@@ -8,17 +9,15 @@ import { UserType } from 'src/app/models/users/user-type';
   styleUrls: ['./users.component.css']
 })
 export class UsersComponent implements OnInit {
-  userTypes: UserType[];
+  userTypes: User[];
 
   constructor(private userService: UserService) {
     this.userTypes = [];
   }
 
   ngOnInit() {
-    this.userService.getUserTypes().subscribe((userTypesTheReturn: UserType[]) => {
+    this.userService.getUsers().subscribe((userTypesTheReturn: User[]) => {
       this.userTypes = userTypesTheReturn;
-      console.log(this.userTypes);
     });
   }
-
 }

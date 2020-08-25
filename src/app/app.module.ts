@@ -13,9 +13,12 @@ import { AuthorsComponent } from './components/authors/authors/authors.component
 import { AuthorEditComponent } from './components/authors/author-edit/author-edit.component';
 import { UserBookEditComponent } from './components/user-books/user-book-edit/user-book-edit.component';
 import { UserBookDetailsComponent } from './components/user-books/user-book-details/user-book-details.component';
+import { BooksComponent } from './components/books/books/books.component';
+import { BookEditComponent } from './components/books/book-edit/book-edit.component';
 import { UserService } from './services/users/user.service';
 import { AuthorService } from './services/authors/author.service';
 import { UserBookService } from './services/user-books/user-book.service';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -27,14 +30,17 @@ import { UserBookService } from './services/user-books/user-book.service';
     AuthorsComponent,
     AuthorEditComponent,
     UserBookEditComponent,
-    UserBookDetailsComponent
+    UserBookDetailsComponent,
+    BooksComponent,
+    BookEditComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule 
+    HttpClientModule,
+    FormsModule
   ],
-  providers: [BookService,UserService,AuthorService,UserBookService],
+  providers: [BookService, UserService, AuthorService, UserBookService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

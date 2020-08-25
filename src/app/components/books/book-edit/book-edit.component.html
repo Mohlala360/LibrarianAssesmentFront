@@ -1,1 +1,54 @@
-<p>book-edit works!</p>
+<div class="container">
+    <div>
+        <form>
+            <div>
+                <div class="form-group row">
+                    <label for="inputBookTitle" class="col-sm-2 col-form-label">Title</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="inputBookTitle" placeholder="Title"
+                            [(ngModel)]="book.title">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="inputBookPublishDate" class="col-sm-2 col-form-label">Publish date</label>
+                    <div class="col-sm-10">
+                        <input type="date" class="form-control" id="inputBookPublishDate"
+                            [(ngModel)]="book.publishDate">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="inputBookAuthorId" class="col-sm-2 col-form-label">Author</label>
+                    <div class="col-sm-10">
+                        <select class="form-control" id="inputBookAuthorId" [(ngModel)]="book.authorId">
+                            <option *ngFor="let author of authors" [value]="author.authorId">{{author.name}}</option>
+                        </select>
+                    </div>
+                    <div class="col-sm-10">
+                        <button class="btnAdd" (click)="addAuthor()">Add new author</button>
+                    </div>
+                </div>
+                <div *ngIf="addNewAuthor">
+                    <div class="form-group row">
+                        <label for="inputAuthorName" class="col-sm-2 col-form-label">Name</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="inputAuthorName" placeholder="Author name"
+                                [(ngModel)]="book.author.name">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="inputAuthorSurname" class="col-sm-2 col-form-label">Surname</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="inputAuthorSurname" placeholder="Auth surname"
+                                [(ngModel)]="book.author.surname">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="bottom">
+        <button class="btnAdd" (click)="submit()">Submit</button>
+        <button class="btnAdd" style="background-color: red;">Back</button>
+        <button class="btnAdd" style="background-color: rgb(134, 131, 131);">Cancel</button>
+    </div>
+</div>

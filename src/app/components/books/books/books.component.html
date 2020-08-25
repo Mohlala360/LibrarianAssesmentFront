@@ -1,1 +1,31 @@
-<p>books works!</p>
+<div class="container">
+    <div>
+        <button class="btnAdd" [routerLink]="['/user/add']">Add book</button>
+    </div>
+    <div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th class="table-head-stay">Title</th>
+                    <th class="table-head-stay">Publish date</th>
+                    <th class="table-head-stay">Author</th>
+                    <th class="table-head-stay"></th>
+                    <th class="table-head-stay"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let book of books">
+                    <td>{{book.title}}</td>
+                    <td>{{book.publishDate}}</td>
+                    <td>{{book.author.name + ' ' + book.author.surname}}</td>
+                    <td><a [routerLink]="['/book/:id']">Details</a></td>
+                    <td><a [routerLink]="['/book/edit/:id']">Edit</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="bottom">
+
+    </div>
+
+</div>

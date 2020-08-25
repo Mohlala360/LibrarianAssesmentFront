@@ -14,24 +14,24 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
 
-  add(user: User): Observable<User> {
-    return this.http.post<User>(apiCaller + 'user', user);
+  addUser(user: User): Observable<User> {
+    return this.http.post<User>(apiCaller + 'users', user);
   }
 
   getUsers(): Observable<User[]> {
-    return this.http.get<User[]>(apiCaller + 'user');
+    return this.http.get<User[]>(apiCaller + 'users');
   }
 
   getUser(userId: number): Observable<User[]> {
-    return this.http.get<User[]>(apiCaller + `user/${userId}`);
+    return this.http.get<User[]>(apiCaller + `users/${userId}`);
   }
 
   getLibrarians(): Observable<User[]> {
-    return this.http.get<User[]>(apiCaller + 'user/as/librarian');
+    return this.http.get<User[]>(apiCaller + 'users/as/librarian');
   }
 
-  updated(user: User): Observable<User> {
-    return this.http.put<User>(apiCaller + 'user', user);
+  updateUser(user: User): Observable<User> {
+    return this.http.put<User>(apiCaller + 'users', user);
   }
 
   getUserTypes(): Observable<UserType[]> {

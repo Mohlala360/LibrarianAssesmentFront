@@ -1,6 +1,33 @@
-<p>users works!</p>
-<table>
-    <tr *ngFor="let userType of userTypes">
-        <td>{{userType}}</td>
-    </tr>
-</table>
+<div class="container">
+    <div>
+        <button class="btnAdd" [routerLink]="['/user/add']">Add user</button>
+    </div>    
+    <div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th class="table-head-stay">Name</th>
+                    <th class="table-head-stay">Surname</th>
+                    <th class="table-head-stay">Date of birth</th>
+                    <th class="table-head-stay">Cell number</th>
+                    <th class="table-head-stay">Email</th>
+                    <th class="table-head-stay">Type</th>
+                    <th class="table-head-stay"></th>
+                    <th class="table-head-stay"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let user of users">
+                    <td>{{user.name}}</td>
+                    <td>{{user.surname}}</td>
+                    <td>{{user.dateOfBirth}}</td>
+                    <td>{{user.cellnumber}}</td>
+                    <td>{{user.email}}</td>
+                    <td>{{user.userType.name}}</td>
+                    <td>Details</td>
+                    <td>Edit</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

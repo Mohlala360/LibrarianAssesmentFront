@@ -1,1 +1,31 @@
-<p>authors works!</p>
+<div class="container">
+    <div>
+        <button class="btnAdd" [routerLink]="['/author/add']">Add author</button>
+    </div>
+    <div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th class="table-head-stay">Name</th>
+                    <th class="table-head-stay">Surname</th>
+                    <th class="table-head-stay"></th>
+                    <th class="table-head-stay"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let author of authors">
+                    <td>{{author.aithorId}}</td>
+                    <td>{{author.name}}</td>
+                    <td>{{author.surname}}</td>                   
+                    <td><a [routerLink]="['author/edit/:id']">Edit</a></td>
+                    <td><a [routerLink]="['author/:id']">Details</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="button">
+        <button class="btnAdd" [routerLink]="['']">Back</button>
+    </div>
+
+</div>

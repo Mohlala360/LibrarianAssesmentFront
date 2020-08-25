@@ -1,1 +1,38 @@
-<p>user-book-edit works!</p>
+<div class="container">
+    <div>
+        <form>
+            <div>
+                <div class="form-group row">
+                    <label for="inputName" class="col-sm-2 col-form-label">Name</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="inputName" placeholder="Name"
+                            [(ngModel)]="user.name">
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="inputUserBookId" class="col-sm-2 col-form-label">Book</label>
+                    <div class="col-sm-10">
+                        <select class="form-control" id="inputUserBookId" [(ngModel)]="userBook.bookId">
+                            <option *ngFor="let book of books" [value]="book.bookId">{{book.title}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="inputUserIdBook" class="col-sm-2 col-form-label">User</label>
+                    <div class="col-sm-10">
+                        <select class="form-control" id="inputUserIdBook" [(ngModel)]="userBook.bookId">
+                            <option *ngFor="let user of users" [value]="user.userId">{{user.name + ' ' + user.surname}}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="bottom">
+        <button class="btnAdd" (click)="submit()">Submit</button>
+        <button class="btnAdd" style="background-color: red;">Back</button>
+        <button class="btnAdd" style="background-color: rgb(134, 131, 131);">Cancel</button>
+    </div>
+</div>
