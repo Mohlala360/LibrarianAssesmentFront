@@ -20,7 +20,7 @@ export class UserEditComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private location: Location) {
     this.edit = false;
-    this.pageTitle = 'User';
+    this.pageTitle = 'User ';
   }
 
   ngOnInit() {
@@ -69,6 +69,7 @@ export class UserEditComponent implements OnInit {
         this.user = returnedUser;
       });
     }
+	this.navigateBack();
   }
 
   navigateBack(): void {

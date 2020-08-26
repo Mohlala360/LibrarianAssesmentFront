@@ -57,12 +57,20 @@ export class UserBookEditComponent implements OnInit {
     });
   }
 
+  getFormData(): UserBook {
+    const data = new UserBook()
+    data.bookId = Number((<HTMLInputElement>document.getElementById('inputUserBookId')).value);
+    data.userId = Number((<HTMLInputElement>document.getElementById('inputUserIdBook')).value);
+    return data;
+  }
+
   navigateBack(): void {
     this.location.back();
   }
 
   submit(): void {
     if (this.allocate) {
+      this.userBook = this.getFormData();
       this.userBookService.allocateBook(this.userBook).subscribe((returnedUserBook: UserBook) => {
         this.userBook = returnedUserBook
       });

@@ -17,12 +17,12 @@ export class BookEditComponent implements OnInit {
   book: Book;
   pageTitle: string;
   addNewAuthor: boolean;
-  
+
   constructor(private bookService: BookService,
     private authorService: AuthorService,
     private activatedRoute: ActivatedRoute,
     private location: Location) {
-    this.pageTitle = 'Book';
+    this.pageTitle = 'Book ';
     this.authors = [];
     this.addNewAuthor = false;
   }
@@ -37,8 +37,9 @@ export class BookEditComponent implements OnInit {
           this.book = returnedBook;
         });
       } else {
-        this.getAuthors();
+        this.pageTitle = this.pageTitle + 'Add';
         this.book = new Book();
+        this.getAuthors();
       }
     });
   }
@@ -55,14 +56,19 @@ export class BookEditComponent implements OnInit {
   }
 
   newAuthor(): void {
-    this.book.author.name = (<HTMLInputElement>document.getElementById('inputAuthorName')).value;
-    this.book.author.surname = (<HTMLInputElement>document.getElementById('inputAuthorSurname')).value;
+    const newAuthor = new Author();
+    newAuthor.name = (<HTMLInputElement>document.getElementById('inputAuthorName')).value;
+    newAuthor.surname = (<HTMLInputElement>document.getElementById('inputAuthorSurname')).value;
+    this.book.author = newAuthor;
   }
 
   getBookFormData(): Book {
     const data = new Book()
     data.title = (<HTMLInputElement>document.getElementById('inputBookTitle')).value;
     data.publishDate = new Date((<HTMLInputElement>document.getElementById('inputBookPublishDate')).value);
+    if (!this.addNewAuthor) {
+      data.authorId = Number((<HTMLInputElement>document.getElementById('inputBookAuthorId')).value);
+    }
     return data;
   }
 
@@ -74,9 +80,18 @@ export class BookEditComponent implements OnInit {
     this.book = this.getBookFormData();
     if (this.addNewAuthor) {
       this.newAuthor();
+      this.authorService.add(this.book.author).subscribe((returnedAuthor: Author) => {
+        this.book.authorId = returnedAuthor.authorId;
+        this.bookService.addBook(this.book).subscribe((returnedBook: Book) => {
+          this.book = returnedBook;
+          this.navigateBack();
+        });
+      });
+    } else {
+      this.bookService.addBook(this.book).subscribe((returnedBook: Book) => {
+        this.book = returnedBook;
+        this.navigateBack();
+      });
     }
-    this.bookService.addBook(this.book).subscribe((returnedBook: Book) => {
-      this.book = returnedBook;
-    })
   }
 }
