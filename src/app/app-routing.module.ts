@@ -16,6 +16,7 @@ const routes: Routes = [
   { path: '', component: UserBooksComponent },
   /*Users*/
   { path: 'user/add', component: UserEditComponent },
+  { path: 'user/edit/:id', component: UserEditComponent },
   { path: 'user/:id', component: UserDetailsComponent },
   { path: 'users', component: UsersComponent },
   /*User Books*/

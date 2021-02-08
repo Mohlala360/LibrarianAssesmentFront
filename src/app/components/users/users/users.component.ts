@@ -3,6 +3,7 @@ import { UserService } from 'src/app/services/users/user.service';
 import { Location } from '@angular/common';
 import { User } from 'src/app/models/users/user';
 import { ActivatedRoute } from '@angular/router';
+import { ControlService } from 'src/app/services/controlService';
 
 @Component({
   selector: 'app-users',
@@ -15,9 +16,9 @@ export class UsersComponent implements OnInit {
 
   constructor(private userService: UserService,
     private activatedRoute: ActivatedRoute,
-    private location: Location) {
+    private controlService:ControlService) {
     this.users = [];
-    this.pageTitle = 'Users';
+    this.controlService.pageTitle = "Users";
   }
 
   ngOnInit() {
@@ -29,7 +30,7 @@ export class UsersComponent implements OnInit {
   }
 
   navigateBack(): void {
-    this.location.back();
+    this.controlService.navigateBack();
   }
 
 }

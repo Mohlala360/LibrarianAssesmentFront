@@ -1,8 +1,5 @@
 <div class="container">
     <div>
-        <label>{{pageTitle}}</label>
-    </div>
-    <div>
         <button class="btnAdd" [routerLink]="['/user/add']">Add user</button>
     </div>
     <div>
@@ -24,11 +21,11 @@
                     <td>{{user.name}}</td>
                     <td>{{user.surname}}</td>
                     <td>{{user.dateOfBirth}}</td>
-                    <td>{{user.cellnumber}}</td>
+                    <td>{{user.cellPhonenumber}}</td>
                     <td>{{user.email}}</td>
                     <td>{{user.userType.name}}</td>
-                    <td><a [routerLink]="['user',user.userId]"> details </a></td>
-                    <td><a [routerLink]="['user/edit',user.userId]"> edit </a></td>
+                    <td><a [routerLink]="['/user',user.userId]"> details </a></td>
+                    <td><a [routerLink]="['/user/edit',user.userId]"> edit </a></td>
                 </tr>
             </tbody>
         </table>

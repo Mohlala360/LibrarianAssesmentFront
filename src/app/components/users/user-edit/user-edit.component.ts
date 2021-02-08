@@ -69,7 +69,6 @@ export class UserEditComponent implements OnInit {
         this.user = returnedUser;
       });
     }
-	this.navigateBack();
   }
 
   navigateBack(): void {

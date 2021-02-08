@@ -26,21 +26,26 @@ export class UserBooksComponent implements OnInit {
   ngOnInit() {
     this.activatedRoute.params.subscribe(params => {
       this.userBookService.getUserBooks().subscribe((returnedUserBooks: UserBook[]) => {
-        this.userBooks = returnedUserBooks;
+        if (returnedUserBooks.length > 0) {
+          this.userBooks = returnedUserBooks;
+          this.userBooks.forEach((userBook: UserBook) => {
+            userBook.currentState = userBook.userBookStates[0];
+          });
+        }
       });
     });
   }
 
-   getRowClass(userBook: UserBook): string {
-     let rowClass = '';
-     if (userBook.currentState.useBookStatusId != UserBookStatuses.Return) {
-       const updatedTimeSpan = (new Date()).getTime() - moment((userBook.currentState.userBookStateDateUpdated)).toDate().getTime();
-     if (updatedTimeSpan > 1000 * 60 * 60 * 24 * 5) {
-         rowClass = 'danger';
-       }
-       return rowClass;
-     }
-   }
+  getRowClass(userBook: UserBook): string {
+    let rowClass = '';
+    if (userBook.currentState.useBookStatusId != UserBookStatuses.Return) {
+      const updatedTimeSpan = (new Date()).getTime() - moment((userBook.currentState.userBookStateDateUpdated)).toDate().getTime();
+      if (updatedTimeSpan > 1000 * 60 * 60 * 24 * 5) {
+        rowClass = 'danger';
+      }
+      return rowClass;
+    }
+  }
 
   navigateBack(): void {
     this.location.back();

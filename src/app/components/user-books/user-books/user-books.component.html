@@ -24,7 +24,7 @@
                     <td>{{userBook.userBookId}}</td>
                     <td>{{userBook.book.title}}</td>
                     <td>{{userBook.user.name + ' ' + userBook.user.surname}}</td>
-                    <td>{{userBook.currentState.useBookStatusId}}</td>
+                    <td>{{userBook.currentState.userBookStateId}}</td>
                     <td><a [routerLink]="['/user-book','userBook.userBookId']">details</a></td>
                     <td><a [routerLink]="['/user-book/edit','userBook.userBookId']">return</a></td>
                 </tr>

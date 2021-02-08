@@ -19,6 +19,7 @@ import { UserService } from './services/users/user.service';
 import { AuthorService } from './services/authors/author.service';
 import { UserBookService } from './services/user-books/user-book.service';
 import { FormsModule } from '@angular/forms';
+import { ControlService } from './services/controlService';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,7 @@ import { FormsModule } from '@angular/forms';
     HttpClientModule,
     FormsModule
   ],
-  providers: [BookService, UserService, AuthorService, UserBookService],
+  providers: [BookService, UserService, AuthorService, UserBookService,ControlService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
